@@ -10,7 +10,9 @@ func TestGoroutine1(t *testing.T) {
 	task1Fixed()
 }
 
-func worker1() <-chan int {
+// =============================== Task ==============================
+// Необходимо рассказать что получится при выполнении кода
+func worker() <-chan int {
 	ch := make(chan int)
 
 	go func() {
@@ -23,14 +25,15 @@ func worker1() <-chan int {
 
 func task1() {
 	start := time.Now()
-	_, _ = worker1(), worker1()
+	_, _ = worker(), worker()
 
 	fmt.Println(time.Since(start))
 }
 
+// ============================ Resolution ===========================
 func task1Fixed() {
 	start := time.Now()
-	_, _ = <-worker1(), <-worker1() // добавляем чтение из канала, если не добавить, горутины не успеют завершится
+	_, _ = <-worker(), <-worker() // добавляем чтение из канала, если не добавить, горутины не успеют завершится
 
-	fmt.Println(time.Since(start)) // так как мы последовательно читаем из каналов, приходится ждеть 2 секунды
+	fmt.Println(time.Since(start)) // так как мы последовательно читаем из каналов, приходится ждать 2 секунды
 }
