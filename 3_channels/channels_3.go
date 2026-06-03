@@ -1,14 +1,10 @@
-package concurrent
+//go:build ignore
+
+package main
 
 import (
 	"fmt"
-	"testing"
 )
-
-func TestGoroutine3(t *testing.T) {
-	task3Fixed1()
-	//task3Fixed2()
-}
 
 // =============================== Task ==============================
 // Необходимо рассказать что получится при выполнении кода
@@ -21,7 +17,7 @@ func spawnMessages(n int) chan string {
 	return ch
 }
 
-func task3() {
+func mainTask() {
 	n := 10
 
 	for msg := range spawnMessages(n) {
@@ -50,7 +46,8 @@ func spawnMessagesFixed1(n int) chan string {
 	return ch
 }
 
-func task3Fixed1() {
+// Отправляем писателя в отдельную горутину
+func main() {
 	n := 10
 
 	for msg := range spawnMessagesFixed1(n) {
@@ -73,7 +70,8 @@ func spawnMessagesFixed2(n int) chan string {
 	return ch
 }
 
-func task3Fixed2() {
+// Повышаем буфер канала
+func main2() {
 	n := 10
 
 	for msg := range spawnMessagesFixed1(n) {

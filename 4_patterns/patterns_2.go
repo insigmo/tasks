@@ -1,19 +1,16 @@
-package concurrent
+//go:build ignore
+
+package main
 
 import (
 	"context"
 	"errors"
 	"fmt"
 	"sync"
-	"testing"
 	"time"
 
 	"golang.org/x/sync/errgroup"
 )
-
-func TestPatternsFixed(t *testing.T) {
-	task2Fixed()
-}
 
 // =============================== Task ==============================
 // 1. Необходимо провести ревью и рассказать за сколько отработает код
@@ -42,7 +39,7 @@ func process(ctx context.Context, users []User) (map[string]int64, error) {
 	return names, nil
 }
 
-func task2() {
+func mainTask() {
 	names := []User{
 		{"Ann"},
 		{"Bob"},
@@ -121,7 +118,7 @@ func process2(ctx context.Context, users []User) (map[string]int64, error) {
 	return names, nil
 }
 
-func task2Fixed() {
+func main() {
 	names := []User{
 		{"Ann"},
 		{"Bob"},

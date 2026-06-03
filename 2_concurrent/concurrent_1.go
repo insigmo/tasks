@@ -1,18 +1,15 @@
-package concurrent
+//go:build ignore
+
+package main
 
 import (
 	"fmt"
 	"sync"
-	"testing"
 )
-
-func TestConcurrent1(t *testing.T) {
-	task1Fixed()
-}
 
 // =============================== Task ==============================
 // Необходимо рассказать и пофиксить код
-func task1() {
+func mainTask() {
 	for i := 0; i < 100; i++ {
 		go func() {
 			fmt.Println(i)
@@ -28,7 +25,7 @@ func task1() {
 // будет ждать. Внутри горутины мы делаем wg.Done(), эта функция отнимает 1 от общего количества.
 // То есть нам достаточно подождать, пока счетчик не станет нулем, что делает в конце wg.Wait().
 // В этом случае выведем все.
-func task1Fixed() {
+func main() {
 	const maxCount = 100
 	var wg sync.WaitGroup
 

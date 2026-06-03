@@ -1,20 +1,17 @@
-package concurrent
+//go:build ignore
+
+package main
 
 import (
 	"fmt"
-	"testing"
 )
-
-func TestGoroutine6(t *testing.T) {
-	task6()
-}
 
 // =============================== Task ==============================
 // По задаче нужно рассказать что получится.
 // Она показывает насколько хорошо разбираемся в select и каналах
 type ch chan ch
 
-func task6() {
+func mainTask() {
 	var ch = make(ch, 1)
 	ch <- ch
 	for i := 0; i < 1000; i++ {

@@ -1,14 +1,11 @@
-package concurrent
+//go:build ignore
+
+package main
 
 import (
 	"fmt"
-	"testing"
 	"time"
 )
-
-func TestGoroutine1(t *testing.T) {
-	task1Fixed()
-}
 
 // =============================== Task ==============================
 // Необходимо рассказать что получится при выполнении кода
@@ -23,7 +20,7 @@ func worker() <-chan int {
 	return ch
 }
 
-func task1() {
+func mainTask() {
 	start := time.Now()
 	_, _ = worker(), worker()
 
@@ -31,7 +28,7 @@ func task1() {
 }
 
 // ============================ Resolution ===========================
-func task1Fixed() {
+func main() {
 	start := time.Now()
 	_, _ = <-worker(), <-worker() // добавляем чтение из канала, если не добавить, горутины не успеют завершится
 

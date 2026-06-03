@@ -1,17 +1,14 @@
-package concurrent
+//go:build ignore
+
+package main
 
 import (
 	"fmt"
-	"testing"
 )
-
-func TestGoroutine2(t *testing.T) {
-	task2Fixed()
-}
 
 // =============================== Task ==============================
 // Необходимо рассказать что получится при выполнении кода и как пофиксить
-func task2() {
+func mainTask() {
 	ch := make(chan int)
 
 	go func() {
@@ -26,7 +23,7 @@ func task2() {
 }
 
 // ============================ Resolution ===========================
-func task2Fixed() {
+func main() {
 	ch := make(chan int)
 
 	go func() {

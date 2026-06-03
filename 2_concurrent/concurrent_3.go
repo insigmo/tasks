@@ -1,16 +1,13 @@
-package concurrent
+//go:build ignore
+
+package main
 
 import (
 	"fmt"
 	"runtime"
 	"sync"
-	"testing"
 	"time"
 )
-
-func TestConcurrent3(t *testing.T) {
-	task3()
-}
 
 // =============================== Task ==============================
 // нужно рассказать что выведется
@@ -20,7 +17,7 @@ func worker(wg *sync.WaitGroup) {
 	time.Sleep(1 * time.Millisecond)
 }
 
-func task3() {
+func mainTask() {
 	runtime.GOMAXPROCS(1)
 
 	MAX_TASKS := 10_000

@@ -1,17 +1,14 @@
-package concurrent
+//go:build ignore
+
+package main
 
 import (
 	"fmt"
-	"testing"
 )
-
-func TestGoroutine4(t *testing.T) {
-	task4()
-}
 
 // =============================== Task ==============================
 // Нужно рассказать что выведет данный код.
-func task4() {
+func mainTask() {
 	ch := make(chan int, 1)
 
 	for i := 0; i < 5; i++ {

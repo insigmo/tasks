@@ -1,17 +1,14 @@
-package concurrent
+//go:build ignore
+
+package main
 
 import (
 	"context"
 	"errors"
 	"fmt"
 	"math/rand"
-	"testing"
 	"time"
 )
-
-func TestGoroutine5(t *testing.T) {
-	task5Fixed()
-}
 
 // =============================== Task ==============================
 // Нужно превратить непредсказуемую функцию в предсказуемую.
@@ -28,7 +25,7 @@ func predictableFunc() int {
 	return 0
 }
 
-func task5() {
+func mainTask() {
 	_ = predictableFunc()
 }
 
@@ -69,7 +66,7 @@ func predictableFuncFixed(ctx context.Context) (int, error) {
 // Чтобы поведение было предсказуемым, нужно это поведение создать
 // Для этого в Go добавили context. Благодаря чему можно повесить таймауты и тд
 // В данном случае можем передать пустой контекст.
-func task5Fixed() {
+func main() {
 	res, err := predictableFuncFixed(context.Background())
 	fmt.Printf("res: %v, err: %v\n", res, err)
 }

@@ -1,20 +1,16 @@
-package concurrent
+//go:build ignore
+
+package main
 
 import (
 	"fmt"
 	"sync"
 	"sync/atomic"
-	"testing"
 )
-
-func TestConcurrent2WithMutex(t *testing.T) {
-	task2FixedWithMutex()
-	//task2FixedWithAtomic()
-}
 
 // =============================== Task ==============================
 // Что произойдет если запустить код и что выведется?
-func task2() {
+func mainTask() {
 	counter := 0
 	for i := 0; i < 100; i++ {
 		go func() {
@@ -31,7 +27,8 @@ func task2() {
 // Получается, что 2 или более горутины сделали одно и тоже несколько раз.
 // Надо защитить код от состояния гонки, для этого тут можно воспользоваться примитивами синхронизации
 // 1 способ это можно воспользоваться мьютексом
-func task2FixedWithMutex() {
+// Resolution with mutex
+func main() {
 	const maxCount = 100
 	var wg sync.WaitGroup
 	wg.Add(maxCount)
@@ -55,7 +52,8 @@ func task2FixedWithMutex() {
 // то есть, выполняет какое-то действие за 1 процессорный шаг. Например, если мы сделаем 1+1, с точки зрения процессора
 // нам нужно создать две единицы, затем их сложить, затем сохранить результат и вернуть его, а атомик это сделает за 1 шаг.
 // Поэтому если даже параллельно будет выполняться, то другая горутина не может вклиниться и что-то испортить.
-func task2FixedWithAtomic() {
+// Resolution with Atomic
+func main2() {
 	const maxCount = 100
 	var wg sync.WaitGroup
 	wg.Add(maxCount)

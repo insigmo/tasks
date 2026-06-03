@@ -1,12 +1,14 @@
-package concurrent
+//go:build ignore
+
+package main
 
 import (
+	"fmt"
 	"sort"
 	"sync"
-	"testing"
 )
 
-func TestFaninFixed(t *testing.T) {
+func main() {
 	ch1 := make(chan int, 2)
 	ch1 <- 1
 	ch1 <- 2
@@ -26,7 +28,7 @@ func TestFaninFixed(t *testing.T) {
 	want := []int{1, 2, 3, 4}
 	for i, v := range want {
 		if got[i] != v {
-			t.Fatalf("got %v, want %v", got, want)
+			fmt.Printf("got %v, want %v", got, want)
 		}
 	}
 }
